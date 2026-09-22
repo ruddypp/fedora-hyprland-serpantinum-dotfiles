@@ -1,0 +1,16 @@
+Subject: Dock: translucent icon tiles instead of solid surface0
+
+The solid surface0 tile behind every dock icon looks heavy on the
+Obsidian preset. Use surface0 at 35% alpha.
+
+--- a/src/quickshell/dock/Dock.qml	2026-09-22 11:13:03.751504892 +0700
++++ b/src/quickshell/dock/Dock.qml	2026-09-22 11:13:03.752478611 +0700
+@@ -1517,7 +1517,7 @@
+                                         property int itemIndex: index
+                                         property real popScale: 1.0
+                                         property real flashOpacity: 0.0
+-                                        property color btnColor: ThemeBackend.surface0
++                                        property color btnColor: Qt.alpha(ThemeBackend.surface0, 0.35)  // dotfiles: thinner, semi-transparent icon tiles
+                                         property int cornerRadius: Math.round(dockWindow.s(dockWindow.dockElementSize) * 0.28)
+                                         property bool isDropTarget: dockWindow.dropTargetIndex === index && dockWindow.dragSourceIndex !== index
+                                         property bool isBeingDragged: btnMa.drag.active

@@ -1,0 +1,239 @@
+{
+  "general": {
+    "language": "en",
+    "avatarPath": "",
+    "muteSfx": false,
+    "weatherInterval": 15,
+    "weatherUnit": "metric",
+    "sfxVolume": 100,
+    "screenshotCaptureOnRelease": false,
+    "quickactions": true
+  },
+  "syspanel": {
+    "clipExpandProgress": 0,
+    "clipExpanded": false,
+    "clipState": 1
+  },
+  "bar": {
+    "position": "top",
+    "width": 100,
+    "opacity": 81,
+    "style": "modular",
+    "time": {
+      "format": "HH:mm:ss"
+    },
+    "autohide": false,
+    "autohideTimeout": 1000,
+    "modules": {
+      "left": [
+        "left",
+        "workspaces",
+        "media"
+      ],
+      "center": [
+        [
+          "timedate",
+          "info",
+          "weather"
+        ]
+      ],
+      "right": [
+        [
+          "tray",
+          "kb",
+          "wifi",
+          "bt",
+          "vol",
+          "bat"
+        ]
+      ]
+    },
+    "distinctPills": false,
+    "groupColors": {
+      "g_timedate": "#d0d0d0",
+      "g_kb": "#e0e0e0"
+    },
+    "timeStyle": "classic",
+    "workspacesStyle": "numbers",
+    "workspaceCount": 3
+  },
+  "theme": {
+    "fontFamily": "Adwaita Mono",
+    "borderRadius": 10,
+    "activePreset": "Obsidian",
+    "matugen": false,
+    "colors": {
+      "base": "#000000",
+      "blue": "#ffffff",
+      "crust": "#000000",
+      "green": "#ffffff",
+      "mantle": "#050505",
+      "maroon": "#808080",
+      "mauve": "#d0d0d0",
+      "overlay0": "#5a5a5a",
+      "overlay1": "#7a7a7a",
+      "overlay2": "#9a9a9a",
+      "peach": "#cccccc",
+      "pink": "#e0e0e0",
+      "red": "#a0a0a0",
+      "sapphire": "#e0e0e0",
+      "subtext0": "#a0a0a0",
+      "subtext1": "#c0c0c0",
+      "surface0": "#1a1a1a",
+      "surface1": "#2a2a2a",
+      "surface2": "#3a3a3a",
+      "teal": "#c0c0c0",
+      "text": "#ffffff",
+      "yellow": "#ffffff"
+    }
+  },
+  "idle": {
+    "enabled": true,
+    "actions": {
+      "dim": {
+        "id": "dim",
+        "timeout": 150,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": false,
+        "command": "",
+        "resumeCommand": "",
+        "isCustom": false
+      },
+      "dpms": {
+        "id": "dpms",
+        "timeout": 450,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": false,
+        "command": "",
+        "resumeCommand": "",
+        "isCustom": false
+      },
+      "lock": {
+        "id": "lock",
+        "timeout": 300,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": false,
+        "command": "",
+        "resumeCommand": "",
+        "isCustom": false
+      },
+      "suspend": {
+        "id": "suspend",
+        "timeout": 600,
+        "enabled": true,
+        "respectInhibitors": true,
+        "mprisInhibit": false,
+        "command": "",
+        "resumeCommand": "",
+        "isCustom": false
+      }
+    }
+  },
+  "notifications": {
+    "dnd": false,
+    "position": "top right",
+    "sound": true,
+    "soundFile": "__HOME__/.local/share/serpantinum/src/assets/sounds/notifications/Botanica.wav"
+  },
+  "display": {
+    "monitors": {
+      "eDP-1": {
+        "enabled": false,
+        "scale": 1.2
+      }
+    }
+  },
+  "wallpaperDir": "__HOME__/Pictures/Wallpapers",
+  "launcher": {
+    "terminalCommand": "ghostty -e"
+  },
+  "dock": {
+    "enabled": true,
+    "position": "bottom",
+    "onTop": true,
+    "elementSize": 60,
+    "floating": false,
+    "opacity": 0,
+    "exclusive": true,
+    "autohide": false,
+    "smartAutohide": false,
+    "autohideTimeout": 1000,
+    "editing": false,
+    "apps": [
+      {
+        "name": "Ghostty",
+        "comment": "A terminal emulator",
+        "desktop_id": "com.mitchellh.ghostty",
+        "icon": "com.mitchellh.ghostty"
+      },
+      {
+        "name": "Google Chrome",
+        "comment": "Access the Internet",
+        "desktop_id": "google-chrome",
+        "icon": "google-chrome"
+      },
+      {
+        "name": "Spotify",
+        "comment": "",
+        "desktop_id": "com.spotify.Client",
+        "icon": "com.spotify.Client"
+      },
+      {
+        "name": "Obsidian",
+        "comment": "Knowledge base / markdown notes",
+        "desktop_id": "obsidian",
+        "icon": "obsidian"
+      },
+      {
+        "name": "Orca",
+        "comment": "Next-gen IDE for parallel agentic development",
+        "desktop_id": "orca",
+        "icon": "orca-ide"
+      },
+      {
+        "name": "Visual Studio Code",
+        "comment": "Code Editing. Redefined.",
+        "desktop_id": "code",
+        "icon": "vscode"
+      },
+      {
+        "name": "winboat",
+        "comment": "Windows for Penguins",
+        "desktop_id": "winboat",
+        "icon": "winboat"
+      },
+      {
+        "name": "Files",
+        "comment": "Access and organize files",
+        "desktop_id": "org.gnome.Nautilus",
+        "icon": "org.gnome.Nautilus"
+      },
+      {
+        "name": "Discord",
+        "comment": "All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.",
+        "desktop_id": "com.discordapp.Discord",
+        "icon": "com.discordapp.Discord"
+      },
+      {
+        "name": "Firefox",
+        "comment": "Browse the Web",
+        "desktop_id": "org.mozilla.firefox",
+        "icon": "firefox"
+      },
+      {
+        "name": "LibreOffice Writer",
+        "comment": "Create and edit text and graphics in letters, reports, documents and Web pages.",
+        "desktop_id": "libreoffice-writer",
+        "icon": "libreoffice-writer"
+      }
+    ],
+    "overrideBoundsCorrection": true,
+    "enableScrolling": true,
+    "visibleElements": 20,
+    "hoverScale": 112,
+    "cascadeScale": true
+  }
+}

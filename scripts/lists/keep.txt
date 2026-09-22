@@ -1,0 +1,17 @@
+nautilus
+gvfs
+gvfs-client
+gvfs-mtp
+gvfs-smb
+gnome-keyring
+gnome-keyring-pam
+xdg-desktop-portal-gtk
+xdg-desktop-portal-hyprland
+adwaita-mono-fonts
+adw-gtk3-theme
+sddm
+sddm-wayland-generic
+hyprland
+quickshell
+ghostty
+f43-backgrounds-base

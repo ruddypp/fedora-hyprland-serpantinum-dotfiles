@@ -1,0 +1,110 @@
+Subject: Per-workspace wallpapers (macOS Spaces style), no animation
+
+Workspace N shows the Nth image (sorted with 'ls -v') of
+$SERPANTINUM_WORKSPACE_WALLPAPERS (default ~/Pictures/Wallpapers/workspaces).
+Images are preloaded on the hidden layer and swapped instantly once Ready,
+so there is no transition and no black flash. The copy/history path of
+changeWallpaper() is skipped to keep switching cheap.
+
+--- a/src/quickshell/wallpaper/WallpaperEngine.qml	2026-09-22 11:13:03.743079137 +0700
++++ b/src/quickshell/wallpaper/WallpaperEngine.qml	2026-09-22 11:13:03.744023945 +0700
+@@ -3,6 +3,7 @@
+ import Quickshell
+ import Quickshell.Wayland
+ import Quickshell.Io
++import Quickshell.Hyprland
+ import QtMultimedia
+ import "../"
+ 
+@@ -58,6 +59,67 @@
+ 
+                 Component.onCompleted: restorePoller.running = true
+ 
++                // Per-workspace wallpaper (fedora-hyprland-serpantinum-dotfiles): workspace N -> Nth image in the folder,
++                // swapped instantly without animation. The image is preloaded on the hidden layer and swapped once ready.
++                // Folder: $SERPANTINUM_WORKSPACE_WALLPAPERS, default ~/Pictures/Wallpapers/workspaces
++                readonly property string wsWallpaperDir: Quickshell.env("SERPANTINUM_WORKSPACE_WALLPAPERS") || (Quickshell.env("HOME") + "/Pictures/Wallpapers/workspaces")
++                property var wsWallpapers: []
++                property string wsPendingPath: ""
++
++                Process {
++                    id: wsWallpaperList
++                    running: true
++                    command: ["bash", "-c", "ls -1v \"$1\" 2>/dev/null | grep -iE '\\.(png|jpe?g|webp)$' | sed \"s|^|$1/|\"", "_", barWindow.wsWallpaperDir]
++                    stdout: StdioCollector {
++                        onStreamFinished: {
++                            barWindow.wsWallpapers = this.text.split("\n").filter(s => s.trim() !== "");
++                            barWindow.applyWorkspaceWallpaper();
++                        }
++                    }
++                }
++
++                Connections {
++                    target: Hyprland
++                    function onFocusedWorkspaceChanged() { barWindow.applyWorkspaceWallpaper(); }
++                }
++
++                function applyWorkspaceWallpaper() {
++                    if (barWindow.wsWallpapers.length === 0) return;
++                    let ws = Hyprland.focusedWorkspace;
++                    if (!ws || ws.id < 1) return;
++                    if (ws.monitor && ws.monitor.name !== barWindow.screen.name) return;
++                    let path = barWindow.wsWallpapers[(ws.id - 1) % barWindow.wsWallpapers.length];
++                    if (path === barWindow.currentWallpaperPath) return;
++                    transitionAnim.stop();
++                    videoWarmUpTimer.stop();
++                    barWindow.wsPendingPath = path;
++                    // If the image is already Ready on the hidden layer, onStatusChanged will not fire again, so swap now.
++                    if (barWindow.activeLayer === 0) {
++                        barWindow.isVideoB = false;
++                        barWindow.pathB = path;
++                        if (imgB.status === Image.Ready) barWindow.workspaceImageReady(1);
++                    } else {
++                        barWindow.isVideoA = false;
++                        barWindow.pathA = path;
++                        if (imgA.status === Image.Ready) barWindow.workspaceImageReady(0);
++                    }
++                }
++
++                function workspaceImageReady(layer) {
++                    if (barWindow.wsPendingPath === "") return;
++                    if ((layer === 0 ? barWindow.pathA : barWindow.pathB) !== barWindow.wsPendingPath) return;
++                    let path = barWindow.wsPendingPath;
++                    barWindow.wsPendingPath = "";
++                    barWindow.isInitialLoad = false;
++                    barWindow.isPreloading = false;
++                    barWindow.transitionProgress = 1.0;
++                    barWindow.activeLayer = layer;
++                    barWindow.originalFileName = path.substring(path.lastIndexOf("/") + 1);
++                    barWindow.currentWallpaperPath = path;
++                    if (layer === 0) { barWindow.stopB(); barWindow.pathB = ""; barWindow.isVideoB = false; }
++                    else { barWindow.stopA(); barWindow.pathA = ""; barWindow.isVideoA = false; }
++                }
++
+                 onCurrentWallpaperPathChanged: {
+                     if (barWindow.screen && barWindow.screen.name) {
+                         let map = Object.assign({}, Wallpaper.screenWallpaperPaths);
+@@ -126,6 +188,7 @@
+                             if (savedPath !== "") {
+                                 barWindow.originalFileName = savedName;
+                                 barWindow._loadNew(savedPath, false);
++                                barWindow.applyWorkspaceWallpaper();
+                                 if (barWindow.isVideo(savedPath)) {
+                                     videoSnapshotProcess.targetPath = savedPath;
+                                     videoSnapshotProcess.running = false;
+@@ -551,6 +614,7 @@
+                             asynchronous: true
+                             visible: !barWindow.isVideoA && barWindow.pathA !== ""
+                             cache: true
++                            onStatusChanged: if (status === Image.Ready) barWindow.workspaceImageReady(0)
+                             sourceSize.width: parent.width > 0 ? parent.width : 0
+                             sourceSize.height: parent.height > 0 ? parent.height : 0
+                         }
+@@ -731,6 +795,7 @@
+                             asynchronous: true
+                             visible: !barWindow.isVideoB && barWindow.pathB !== ""
+                             cache: true
++                            onStatusChanged: if (status === Image.Ready) barWindow.workspaceImageReady(1)
+                             sourceSize.width: parent.width > 0 ? parent.width : 0
+                             sourceSize.height: parent.height > 0 ? parent.height : 0
+                         }

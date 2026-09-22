@@ -1,0 +1,8 @@
+[SddmGreeterTheme]
+Name=Serpantinum Obsidian
+Description=SDDM login screen matching the Serpantinum Obsidian preset (fedora-hyprland-serpantinum-dotfiles)
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+ConfigFile=theme.conf
+QtVersion=6

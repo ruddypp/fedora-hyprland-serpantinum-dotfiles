@@ -1,0 +1,58 @@
+############################
+# Ghostty - Carbon Glass
+############################
+
+# --- Window ---
+background = #0f1115
+foreground = #e6e8ee
+
+# Scrollbar
+scrollbar = system
+
+# --- Font ---
+font-family = "JetBrainsMono Nerd Font"
+font-size = 12
+
+# --- Layout ---
+window-padding-x = 14
+window-padding-y = 12
+
+# --- Cursor ---
+cursor-style = block
+cursor-color = #f5c86a
+cursor-text = #0f1115
+
+# --- Selection ---
+selection-background = #2f4058
+selection-foreground = #f4f7fb
+
+# --- Palette ---
+palette = 0=#15171d
+palette = 1=#e06c75
+palette = 2=#8ccf7e
+palette = 3=#f5c86a
+palette = 4=#6ea8fe
+palette = 5=#c678dd
+palette = 6=#56b6c2
+palette = 7=#d7dae0
+palette = 8=#5c6370
+palette = 9=#ff7b86
+palette = 10=#a6e88d
+palette = 11=#ffd57a
+palette = 12=#8bbcff
+palette = 13=#d99cff
+palette = 14=#6ee7f0
+palette = 15=#ffffff
+
+# --- Keybinds ---
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# New Tab
+keybind = ctrl+n=new_tab
+
+# Next Tab (ke kanan)
+keybind = alt+tab=next_tab
+
+# Previous Tab (opsional, ke kiri)
+keybind = alt+shift+tab=previous_tab

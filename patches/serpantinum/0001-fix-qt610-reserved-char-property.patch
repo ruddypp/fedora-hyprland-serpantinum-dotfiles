@@ -1,0 +1,27 @@
+Subject: Fix blank screen on Qt 6.10: 'char' is a reserved word
+
+Qt 6.10 (Fedora 43) rejects 'required property string char' with
+"Unexpected token 'reserved word'". PasswordInput.qml fails to load, which
+takes Lock.qml and Shell.qml down with it, so the whole shell never starts.
+Use the model object instead, like Input.qml and Dropdown.qml already do.
+
+--- a/src/quickshell/reusables/PasswordInput.qml	2026-09-22 11:13:03.729733662 +0700
++++ b/src/quickshell/reusables/PasswordInput.qml	2026-09-22 11:13:03.730957953 +0700
+@@ -804,7 +804,7 @@
+                 delegate: Item {
+                     id: charSlot
+                     required property int index
+-                    required property string char
++                    required property var model
+ 
+                     property real baseWidth: root.charSlotWidth > 0
+                         ? root.charSlotWidth
+@@ -862,7 +862,7 @@
+                     Text {
+                         id: charText
+                         anchors.centerIn: parent
+-                        text: charSlot.char
++                        text: charSlot.model.char
+                         color: root.textColor
+ 
+                         font.family: root.fontFamily
