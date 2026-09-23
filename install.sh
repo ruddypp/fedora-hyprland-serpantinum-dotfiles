@@ -121,8 +121,11 @@ EOF
 
 # ---------- 4. configs ----------
 info "Installing configs (existing ones are backed up)"
-backup_and_copy "$DOTS/config/hypr" "$HOME/.config/hypr"   # includes scripts/toggle-transparency.sh
-chmod +x "$HOME/.config/hypr/scripts/"*.sh
+backup_and_copy "$DOTS/config/hypr" "$HOME/.config/hypr"   # includes scripts/ (transparency toggle, workspace compactor)
+chmod +x "$HOME/.config/hypr/scripts/"*.sh "$HOME/.config/hypr/scripts/"*.py
+
+# GNOME-style workspace overview (Super+Tab), a separate Quickshell config
+backup_and_copy "$DOTS/config/quickshell/overview" "$HOME/.config/quickshell/overview"
 
 backup_and_copy "$DOTS/config/ghostty" "$HOME/.config/ghostty"
 

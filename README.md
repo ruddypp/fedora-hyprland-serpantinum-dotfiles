@@ -29,6 +29,9 @@ This repo does all of that with one script, and adds a few things on top.
   - `0002` **per-workspace wallpapers**, macOS Spaces style, instant switch with no animation
   - `0003` translucent dock icon tiles
 - **Obsidian** preset: black/white/gray, Adwaita Mono, 3 workspaces shown in the bar
+- **Predictable tiling**: new windows always open right/bottom, splits stay put, dialogs/PiP float, apps can't force-maximize
+- **Gap-free workspaces**: occupied workspaces are renumbered 1, 2, 3… automatically (no empty holes)
+- **GNOME-style overview** (`Super+Tab`): live previews of every workspace, drag a window onto another workspace to move it
 - **Window transparency** (92% active / 85% inactive), toggle with `Super+T`
 - **Ghostty** as the terminal, **WhiteSur-dark** icons, `adw-gtk3-dark` for GTK apps
 - **serpantinum-obsidian**: a custom SDDM theme (centered, card-less, your wallpaper + avatar), runs on Weston so no KDE is needed
@@ -65,7 +68,8 @@ Full walkthrough, requirements and what each step touches: **[docs/INSTALL.md](d
 install.sh                      main installer
 packages/fedora.txt             dnf packages (Arch names already mapped)
 patches/serpantinum/*.patch     applied on top of upstream Serpantinum
-config/hypr/                    Hyprland Lua config + scripts/toggle-transparency.sh (-> ~/.config/hypr)
+config/hypr/                    Hyprland Lua config + scripts (-> ~/.config/hypr)
+config/quickshell/overview/     GNOME-style workspace overview (-> ~/.config/quickshell/overview)
 config/serpantinum/settings.json  Serpantinum settings template (-> ~/.config/serpantinum)
 config/ghostty/config           Ghostty "Carbon Glass" config
 scripts/install-sddm.sh         SDDM + serpantinum-obsidian theme

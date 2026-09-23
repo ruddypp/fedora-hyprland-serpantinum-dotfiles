@@ -17,6 +17,11 @@
 | --- | --- |
 | `Super+Q` | Close window |
 | `Super+Shift+F` | Toggle floating |
+| `Super+Z` | Maximize (bar and gaps stay visible) |
+| `Super+Shift+Z` | True fullscreen |
+| `Super+J` | Toggle split direction (side-by-side ⇄ stacked) |
+| `Super+P` | Pseudo-tile (keep the window's own size inside its slot) |
+| `Super+Ctrl+C` | Center a floating window |
 | `Super+←/→/↑/↓` | Move focus |
 | `Super+Ctrl+←/→/↑/↓` | Swap window in that direction |
 | `Super+Shift+←/→/↑/↓` | Resize (repeats while held) |
@@ -30,7 +35,10 @@
 | --- | --- |
 | `Super+1…9, 0` | Go to workspace 1–10 |
 | `Super+Shift+1…9, 0` | Move the focused window to workspace 1–10 |
-| 3-finger horizontal swipe | Previous/next workspace |
+| 3-finger horizontal swipe | Previous/next workspace (one by one, empty ones included) |
+| `Super+Tab` | Overview: drag a window onto another workspace to move it, click a window to focus it, click a workspace to go there, `Esc` to close. The last `+` card creates a new workspace. |
+
+Workspaces never have gaps: `scripts/workspace-compact.py` renumbers occupied workspaces to 1, 2, 3… as windows open, close or move. To turn it off, remove its line from `config/autostart.lua`.
 
 The bar shows 3 workspaces and grows when you go past them (`bar.workspaceCount` in `settings.json`).
 

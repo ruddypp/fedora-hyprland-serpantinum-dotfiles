@@ -24,6 +24,12 @@ hl.bind(mainMod .. " + Down", hl.dsp.focus({ direction = "down" }))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + Z", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + CTRL + C", hl.dsp.window.center())
+hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("qs -c overview ipc call overview toggle"))
 
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("serpantinum brightness lower"), { locked = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("serpantinum brightness raise"), { locked = true })
