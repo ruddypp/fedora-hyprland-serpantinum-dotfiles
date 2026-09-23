@@ -71,14 +71,15 @@ All shortcuts: [KEYBINDINGS.md](KEYBINDINGS.md).
 ./scripts/install-sddm.sh
 # or pick the images yourself:
 ./scripts/install-sddm.sh --background ~/Pictures/login.jpg --avatar ~/Pictures/me.png
+./scripts/install-sddm.sh --theme serpantinum-obsidian   # the older card-less theme
 ```
 
-This installs SDDM with the Weston greeter (`sddm-wayland-generic`, no KDE needed), builds the `serpantinum-obsidian` theme with your background and avatar, makes sure gnome-keyring unlocks at login, and switches the display manager from GDM to SDDM. GDM is only disabled, not removed.
+This installs SDDM with the Weston greeter (`sddm-wayland-generic`, no KDE needed), builds the login theme (`pixie` by default) with your background and avatar, makes sure gnome-keyring unlocks at login, and switches the display manager from GDM to SDDM. GDM is only disabled, not removed.
 
 Preview it before logging out:
 
 ```bash
-sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/serpantinum-obsidian
+sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/pixie
 ```
 
 (Test mode can't sign in; close it with `Super+Q`.)
@@ -114,7 +115,7 @@ If you installed the login screen and want GDM back:
 
 ```bash
 sudo systemctl disable sddm && sudo systemctl enable --force gdm
-sudo rm -rf /usr/share/sddm/themes/serpantinum-obsidian /etc/sddm.conf.d/10-serpantinum.conf
+sudo rm -rf /usr/share/sddm/themes/pixie /usr/share/sddm/themes/serpantinum-obsidian /etc/sddm.conf.d/10-serpantinum.conf
 ```
 
 Packages can be removed with `sudo dnf remove hyprland quickshell ...` (see `packages/fedora.txt`).

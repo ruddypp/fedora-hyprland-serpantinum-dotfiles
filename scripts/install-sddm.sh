@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Install SDDM + the serpantinum-obsidian login theme and make SDDM the display manager.
+# Install SDDM + a login theme and make SDDM the display manager.
 # The greeter runs on Weston (sddm-wayland-generic), so no KDE/KWin is needed.
 #
-# Usage: ./scripts/install-sddm.sh [--background IMAGE] [--avatar IMAGE]
+# Usage: ./scripts/install-sddm.sh [--theme pixie|serpantinum-obsidian] [--background IMAGE] [--avatar IMAGE]
+#   --theme       pixie (default, Pixel-style lock screen by xCaptaiN09) or serpantinum-obsidian
 #   --background  Login background (default: first image in ~/Pictures/Wallpapers/workspaces)
 #   --avatar      Round avatar (default: Serpantinum's general.avatarPath, then ~/.face)
 #
@@ -11,19 +12,26 @@
 set -euo pipefail
 
 DOTS="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-THEME_SRC="$DOTS/sddm/serpantinum-obsidian"
-THEME_DEST="/usr/share/sddm/themes/serpantinum-obsidian"
+THEME="pixie"
 BG=""
 AVATAR=""
 
 while [ $# -gt 0 ]; do
     case "$1" in
+        --theme)      THEME="$2"; shift 2 ;;
         --background) BG="$2"; shift 2 ;;
         --avatar)     AVATAR="$2"; shift 2 ;;
-        -h|--help)    sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        -h|--help)    sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) echo "Unknown option: $1" >&2; exit 1 ;;
     esac
 done
+
+case "$THEME" in
+    pixie|serpantinum-obsidian) ;;
+    *) echo "Unknown theme: $THEME (use pixie or serpantinum-obsidian)" >&2; exit 1 ;;
+esac
+THEME_SRC="$DOTS/sddm/$THEME"
+THEME_DEST="/usr/share/sddm/themes/$THEME"
 
 [ "$EUID" -ne 0 ] || { echo "Run as your normal user; sudo is used where needed." >&2; exit 1; }
 
@@ -42,19 +50,26 @@ sudo dnf install -y sddm sddm-wayland-generic adwaita-mono-fonts ImageMagick
 echo "==> Building the theme"
 tmp="$(mktemp -d)"
 cp -r "$THEME_SRC/." "$tmp/"
+if [ "$THEME" = pixie ]; then
+    BG_OUT="$tmp/assets/background.jpg"
+    AVATAR_OUT="$tmp/assets/avatar.jpg"
+else
+    BG_OUT="$tmp/bg.jpg"
+    AVATAR_OUT="$tmp/faces/$USER.png"
+fi
 if [ -n "$BG" ] && [ -f "$BG" ]; then
-    magick "$BG" -resize '1920x1080^' -gravity center -extent 1920x1080 -quality 90 "$tmp/bg.jpg"
+    magick "$BG" -resize '1920x1080^' -gravity center -extent 1920x1080 -quality 90 "$BG_OUT"
     echo "   background: $BG"
 else
-    echo "   no background image found, the login screen will be plain black"
+    echo "   no background image found, using the theme's default"
 fi
 if [ -n "$AVATAR" ] && [ -f "$AVATAR" ]; then
-    mkdir -p "$tmp/faces"
+    mkdir -p "$(dirname "$AVATAR_OUT")"
     # Center square crop, same as Serpantinum shows it
-    magick "$AVATAR" -gravity center -extent "%[fx:min(w,h)]x%[fx:min(w,h)]" -resize 512x512 "$tmp/faces/$USER.png"
+    magick "$AVATAR" -gravity center -extent "%[fx:min(w,h)]x%[fx:min(w,h)]" -resize 512x512 "$AVATAR_OUT"
     echo "   avatar: $AVATAR"
 else
-    echo "   no avatar found, the login screen shows your initial"
+    echo "   no avatar found, using the theme's default"
 fi
 
 sudo rm -rf "$THEME_DEST"
@@ -65,9 +80,9 @@ rm -rf "$tmp"
 
 echo "==> /etc/sddm.conf.d/10-serpantinum.conf"
 sudo mkdir -p /etc/sddm.conf.d
-sudo tee /etc/sddm.conf.d/10-serpantinum.conf >/dev/null <<'EOF'
+sudo tee /etc/sddm.conf.d/10-serpantinum.conf >/dev/null <<EOF
 [Theme]
-Current=serpantinum-obsidian
+Current=$THEME
 ThemeDir=/usr/share/sddm/themes
 
 [General]
@@ -93,10 +108,10 @@ if [ -n "$current" ] && [ "$(basename "$current")" != "sddm.service" ]; then
 fi
 sudo systemctl enable --force sddm.service
 
-cat <<'EOF'
+cat <<EOF
 
 Done. Preview without logging out (close it with Super+Q; sign-in does nothing in test mode):
-  sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/serpantinum-obsidian
+  sddm-greeter-qt6 --test-mode --theme $THEME_DEST
 
 Reboot or log out to use it.
 EOF

@@ -34,7 +34,7 @@ This repo does all of that with one script, and adds a few things on top.
 - **GNOME-style overview** (`Super+Tab`): live previews of every workspace, drag a window onto another workspace to move it
 - **Window transparency** (92% active / 85% inactive), toggle with `Super+T`
 - **Ghostty** as the terminal, **WhiteSur-dark** icons, `adw-gtk3-dark` for GTK apps
-- **serpantinum-obsidian**: a custom SDDM theme (centered, card-less, your wallpaper + avatar), runs on Weston so no KDE is needed
+- **SDDM login** with [Pixie](https://github.com/xCaptaiN09/pixie-sddm) (Pixel-style lock screen, colors from your wallpaper) by default, or the custom **serpantinum-obsidian** theme; both use your wallpaper + avatar and run on Weston, so no KDE is needed
 - Optional script to **remove GNOME/KDE** safely (dry run by default, checks every dependency first)
 - Telemetry in Serpantinum is **off**
 

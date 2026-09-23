@@ -37,6 +37,7 @@ This repo is glue: config, patches and scripts. The real work belongs to these p
 | [matugen](https://github.com/InioX/matugen) | Material You colors from wallpaper (installed, off in the Obsidian preset) | GPL-2.0 |
 | [cliphist](https://github.com/sentriz/cliphist) | Clipboard history (`Super+C`) | GPL-3.0 |
 | [Serpantinum wallpapers](https://github.com/ilyamiro/shell-wallpapers) | Optional wallpaper pack from upstream (not installed by default) | none stated |
+| [Pixie SDDM](https://github.com/xCaptaiN09/pixie-sddm) by xCaptaiN09 (commit 1e1a863) | Default login theme, vendored in `sddm/pixie` (24-hour clock enabled) | MIT |
 | [Material-You SDDM theme](https://github.com/ilyamiro/serpantinum/tree/master/config/sddm/themes/material-you) by Darkkal44 | Serpantinum's original login theme; `serpantinum-obsidian` is a separate rewrite inspired by it | MIT |
 
 Wallpapers and the avatar in the screenshots are fan art of Rimuru Tempest (*That Time I Got Reincarnated as a Slime*) and belong to their respective artists. They are not included in this repo.

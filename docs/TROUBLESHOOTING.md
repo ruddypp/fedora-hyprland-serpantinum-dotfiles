@@ -94,7 +94,7 @@ journalctl -b | grep -i 'sddm-greeter.*qml'
 - `Unexpected token 'reserved word'`: same Qt 6.10 `char` problem, in whatever theme you're using
 - `module "Qt5Compat.GraphicalEffects" is not installed`: `sudo dnf install qt6-qt5compat`
 
-Test a theme without logging out: `sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/serpantinum-obsidian`.
+Test a theme without logging out: `sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/pixie`.
 
 ## Locked out: no login screen at all
 

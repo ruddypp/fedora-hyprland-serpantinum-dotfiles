@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=Pixie SDDM
+Description=A clean, modern, and minimal SDDM theme inspired by Google Pixel UI and Material Design 3.
+Author=xCaptaiN09
+Copyright=(c) 2026 xCaptaiN09
+License=MIT
+Type=sddm-theme
+Version=3.0
+MainScript=Main.qml
+Screenshot=screenshot.png
+QtVersion=6
+X-SDDM-Theme-InterfaceVersion=2
