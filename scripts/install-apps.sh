@@ -2,7 +2,7 @@
 # Install the apps pinned in the dock, so the desktop looks like the screenshots.
 #
 # Usage: ./scripts/install-apps.sh [--skip GROUP[,GROUP...]] [--help]
-#   Groups: dnf, chrome, vscode, flatpak, appimage
+#   Groups: dnf, chrome, vscode, flatpak, appimage, claude
 #   Example: ./scripts/install-apps.sh --skip vscode,appimage
 #
 #   dnf       Firefox, GNOME Text Editor
@@ -11,6 +11,7 @@
 #   flatpak   Spotify, Discord, Mission Center (Flathub)
 #   appimage  Obsidian, Orca, WordCraft, GridCraft, PdfCraft, DeckCraft
 #             (latest GitHub release, checked against the SHA-256 GitHub publishes)
+#   claude    Claude Code CLI (Anthropic's official native installer, into ~/.local/bin)
 #
 # Safe to run again: anything already installed is skipped. AppImages are only
 # replaced when a newer release exists.
@@ -37,7 +38,7 @@ die()  { printf '\e[31mxx\e[0m %s\n' "$*" >&2; exit 1; }
 while [ $# -gt 0 ]; do
     case "$1" in
         --skip)    SKIP=",${2:-},"; shift 2 ;;
-        -h|--help) sed -n '2,16p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        -h|--help) sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) die "Unknown option: $1 (see --help)" ;;
     esac
 done
@@ -206,6 +207,16 @@ if want appimage; then
     xdg-mime default ai.storyteller.gridcraft.desktop application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/vnd.ms-excel application/vnd.oasis.opendocument.spreadsheet text/csv
     xdg-mime default ai.storyteller.deckcraft.desktop application/vnd.openxmlformats-officedocument.presentationml.presentation application/vnd.ms-powerpoint application/vnd.oasis.opendocument.presentation
     xdg-mime default ai.storyteller.pdfcraft.desktop application/pdf
+fi
+
+# ---------- Claude Code ----------
+if want claude; then
+    if command -v claude >/dev/null 2>&1 || [ -x "$HOME/.local/bin/claude" ]; then
+        info "Claude Code already installed (it updates itself)"
+    else
+        info "Claude Code (claude.ai/install.sh, verifies its own checksum)"
+        curl -fsSL https://claude.ai/install.sh | bash
+    fi
 fi
 
 info "Apps done. AppImages have no auto-update: run this script again to update them."

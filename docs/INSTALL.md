@@ -61,6 +61,7 @@ It also creates `~/Pictures/Wallpapers/workspaces` (per-workspace wallpapers) an
 | `vscode` | Visual Studio Code | Microsoft's dnf repo |
 | `flatpak` | Spotify, Discord, Mission Center | Flathub |
 | `appimage` | Obsidian, Orca, WordCraft, GridCraft, PdfCraft, DeckCraft | Latest GitHub release into `~/.local/bin`, SHA-256 checked |
+| `claude` | Claude Code (CLI, run `claude` in Ghostty) | Anthropic's native installer into `~/.local/bin`, updates itself |
 
 Skip what you don't want, or run it on its own later:
 
