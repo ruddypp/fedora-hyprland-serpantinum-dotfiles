@@ -37,6 +37,7 @@ This repo does all of that with one script, and adds a few things on top.
 - **Window transparency** (92% active / 85% inactive), toggle with `Super+T`
 - **Ghostty** as the terminal, **WhiteSur-dark** icons, `adw-gtk3-dark` for GTK apps
 - **SDDM login** with [Pixie](https://github.com/xCaptaiN09/pixie-sddm) (Pixel-style lock screen, colors from your wallpaper) by default, or the custom **serpantinum-obsidian** theme; both use your wallpaper + avatar and run on Weston, so no KDE is needed
+- **Dock apps installed for you**: Chrome, VS Code, Firefox, Spotify, Discord, Obsidian, Orca, Text Editor and the WordCraft/GridCraft/PdfCraft/DeckCraft office suite (opt out with `--no-apps`)
 - Optional script to **remove GNOME/KDE** safely (dry run by default, checks every dependency first)
 - Telemetry in Serpantinum is **off**
 
@@ -45,7 +46,7 @@ This repo does all of that with one script, and adds a few things on top.
 ```bash
 git clone https://github.com/ruddypp/fedora-hyprland-serpantinum-dotfiles.git
 cd fedora-hyprland-serpantinum-dotfiles
-./install.sh                 # packages, Serpantinum + patches, configs, fonts, icons
+./install.sh                 # packages, Serpantinum + patches, configs, fonts, icons, dock apps
 ./scripts/install-sddm.sh    # optional: matching login screen
 ```
 
@@ -74,6 +75,7 @@ config/hypr/                    Hyprland Lua config + scripts (-> ~/.config/hypr
 config/quickshell/overview/     GNOME-style workspace overview (-> ~/.config/quickshell/overview)
 config/serpantinum/settings.json  Serpantinum settings template (-> ~/.config/serpantinum)
 config/ghostty/config           Ghostty "Carbon Glass" config
+scripts/install-apps.sh         dock apps (dnf, Flathub, verified AppImages)
 scripts/install-sddm.sh         SDDM + serpantinum-obsidian theme
 scripts/remove-gnome-kde.sh     optional, dry run by default
 scripts/lists/                  verified package lists for the removal script

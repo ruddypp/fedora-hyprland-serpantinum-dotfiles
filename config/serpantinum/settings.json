@@ -185,13 +185,13 @@
         "name": "Obsidian",
         "comment": "Knowledge base / markdown notes",
         "desktop_id": "obsidian",
-        "icon": "obsidian"
+        "icon": "__HOME__/.local/share/icons/hicolor/256x256/apps/obsidian.png"
       },
       {
         "name": "Orca",
-        "comment": "Next-gen IDE for parallel agentic development",
+        "comment": "IDE for parallel agentic development",
         "desktop_id": "orca",
-        "icon": "orca-ide"
+        "icon": "__HOME__/.local/share/icons/hicolor/256x256/apps/orca.png"
       },
       {
         "name": "Visual Studio Code",
@@ -200,16 +200,16 @@
         "icon": "vscode"
       },
       {
-        "name": "winboat",
-        "comment": "Windows for Penguins",
-        "desktop_id": "winboat",
-        "icon": "winboat"
-      },
-      {
         "name": "Files",
         "comment": "Access and organize files",
         "desktop_id": "org.gnome.Nautilus",
         "icon": "org.gnome.Nautilus"
+      },
+      {
+        "name": "Text Editor",
+        "comment": "View and edit text files",
+        "desktop_id": "org.gnome.TextEditor",
+        "icon": "org.gnome.TextEditor"
       },
       {
         "name": "Discord",
@@ -224,10 +224,28 @@
         "icon": "firefox"
       },
       {
-        "name": "LibreOffice Writer",
-        "comment": "Create and edit text and graphics in letters, reports, documents and Web pages.",
-        "desktop_id": "libreoffice-writer",
-        "icon": "libreoffice-writer"
+        "name": "WordCraft",
+        "comment": "Write documents; open and save Word files",
+        "desktop_id": "ai.storyteller.wordcraft",
+        "icon": "__HOME__/.local/share/icons/hicolor/256x256/apps/ai.storyteller.wordcraft.png"
+      },
+      {
+        "name": "GridCraft",
+        "comment": "Spreadsheets; open and save Excel files",
+        "desktop_id": "ai.storyteller.gridcraft",
+        "icon": "__HOME__/.local/share/icons/hicolor/256x256/apps/ai.storyteller.gridcraft.png"
+      },
+      {
+        "name": "PdfCraft",
+        "comment": "Read and edit PDF files",
+        "desktop_id": "ai.storyteller.pdfcraft",
+        "icon": "__HOME__/.local/share/icons/hicolor/256x256/apps/ai.storyteller.pdfcraft.png"
+      },
+      {
+        "name": "DeckCraft",
+        "comment": "Presentations; open and save PowerPoint files",
+        "desktop_id": "ai.storyteller.deckcraft",
+        "icon": "__HOME__/.local/share/icons/hicolor/256x256/apps/ai.storyteller.deckcraft.png"
       }
     ],
     "overrideBoundsCorrection": true,

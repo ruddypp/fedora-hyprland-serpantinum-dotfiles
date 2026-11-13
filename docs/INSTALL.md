@@ -28,6 +28,7 @@ Options:
 | --- | --- |
 | `--skip-packages` | Don't touch COPR/dnf (you installed the packages yourself) |
 | `--skip-icons` | Don't install WhiteSur icons |
+| `--no-apps` | Don't install the dock apps (see below) |
 | `--with-sddm` | Also run `scripts/install-sddm.sh` at the end |
 
 What it does, in order:
@@ -48,6 +49,26 @@ What it does, in order:
 8. **Services**: pipewire/wireplumber (user), NetworkManager, power-profiles-daemon, bluetooth.
 
 It also creates `~/Pictures/Wallpapers/workspaces` (per-workspace wallpapers) and `~/Pictures/Screenshots`.
+
+### Dock apps
+
+`install.sh` ends by running `scripts/install-apps.sh`, so every app pinned in the dock is actually there after the first login:
+
+| Group | Apps | Source |
+| --- | --- | --- |
+| `dnf` | Firefox, GNOME Text Editor | Fedora repos |
+| `chrome` | Google Chrome | Google's dnf repo |
+| `vscode` | Visual Studio Code | Microsoft's dnf repo |
+| `flatpak` | Spotify, Discord, Mission Center | Flathub |
+| `appimage` | Obsidian, Orca, WordCraft, GridCraft, PdfCraft, DeckCraft | Latest GitHub release into `~/.local/bin`, SHA-256 checked |
+
+Skip what you don't want, or run it on its own later:
+
+```bash
+./scripts/install-apps.sh --skip vscode,appimage
+```
+
+The AppImages are about 750 MB together (Orca alone is ~260 MB); skip `appimage` on a metered connection. AppImages don't update themselves; run the script again to pull newer releases. It also makes the Craft apps the default for Word, Excel, PowerPoint and PDF files. To change the list, edit the arrays at the top of the script and the `dock.apps` entries in `config/serpantinum/settings.json`.
 
 ## 3. Add wallpapers
 

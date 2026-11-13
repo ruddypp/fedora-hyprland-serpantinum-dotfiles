@@ -2,7 +2,7 @@
 # fedora-hyprland-serpantinum-dotfiles installer
 # Hyprland + Quickshell + Serpantinum on Fedora 43, without the Arch-only upstream installer.
 #
-# Usage: ./install.sh [--skip-packages] [--skip-icons] [--with-sddm] [--help]
+# Usage: ./install.sh [--skip-packages] [--skip-icons] [--no-apps] [--with-sddm] [--help]
 set -euo pipefail
 
 SERPANTINUM_REPO="https://github.com/ilyamiro/serpantinum.git"
@@ -16,6 +16,7 @@ STAMP="$(date +%Y%m%d_%H%M%S)"
 SKIP_PACKAGES=false
 SKIP_ICONS=false
 WITH_SDDM=false
+WITH_APPS=true
 
 info() { printf '\e[36m==>\e[0m %s\n' "$*"; }
 warn() { printf '\e[33m!!\e[0m %s\n' "$*"; }
@@ -28,6 +29,7 @@ usage() {
 Options:
   --skip-packages  Do not enable COPRs or install dnf packages
   --skip-icons     Do not install the WhiteSur icon theme
+  --no-apps        Do not install the dock apps (Chrome, VS Code, Spotify, Discord, Obsidian, ...; see scripts/install-apps.sh)
   --with-sddm      Also install SDDM + the serpantinum-obsidian login theme (runs scripts/install-sddm.sh)
   --help           Show this help
 EOF
@@ -38,6 +40,7 @@ for arg in "$@"; do
         --skip-packages) SKIP_PACKAGES=true ;;
         --skip-icons)    SKIP_ICONS=true ;;
         --with-sddm)     WITH_SDDM=true ;;
+        --no-apps)       WITH_APPS=false ;;
         -h|--help)       usage; exit 0 ;;
         *) die "Unknown option: $arg (see --help)" ;;
     esac
@@ -177,7 +180,12 @@ info "Enabling services"
 systemctl --user enable --now pipewire wireplumber pipewire-pulse 2>/dev/null || true
 sudo systemctl enable --now NetworkManager power-profiles-daemon bluetooth 2>/dev/null || true
 
-# ---------- 8. SDDM (optional) ----------
+# ---------- 8. dock apps ----------
+if [ "$WITH_APPS" = true ] && [ "$SKIP_PACKAGES" = false ]; then
+    bash "$DOTS/scripts/install-apps.sh"
+fi
+
+# ---------- 9. SDDM (optional) ----------
 if [ "$WITH_SDDM" = true ]; then
     bash "$DOTS/scripts/install-sddm.sh"
 fi

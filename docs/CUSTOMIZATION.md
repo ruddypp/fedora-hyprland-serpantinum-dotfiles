@@ -79,7 +79,7 @@ Serpantinum → `Super+H` → Theme. This config ships the **Obsidian** preset (
 
 ## Dock
 
-Apps, size and autohide are in Serpantinum → `Super+H` → Dock, or `dock` in `settings.json`.
+Apps, size and autohide are in Serpantinum → `Super+H` → Dock, or `dock` in `settings.json`. The default dock matches the apps `scripts/install-apps.sh` installs. AppImage entries use an absolute PNG path as `icon`: Quickshell shows a pink/black placeholder for icon *names* it cannot resolve.
 
 The icon tile color comes from patch `0003` (`Qt.alpha(ThemeBackend.surface0, 0.35)` in `dock/Dock.qml`). Change the `0.35` in the patch before installing: `0.2` is lighter, `0.5` is stronger, `"transparent"` removes the tile.
 
