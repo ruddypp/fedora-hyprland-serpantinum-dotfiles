@@ -57,7 +57,7 @@ It also creates `~/Pictures/Wallpapers/workspaces` (per-workspace wallpapers) an
 
 | Group | Apps | Source |
 | --- | --- | --- |
-| `dnf` | Firefox, Text Editor, Celluloid, Loupe, Kitty, Ptyxis, Syncthing, development tools and database packages | Fedora repos; full list in `scripts/install-apps.sh` |
+| `dnf` | Firefox, Text Editor, Celluloid, Loupe, Ptyxis, Syncthing, development tools and database packages | Fedora repos; full list in `scripts/install-apps.sh` |
 | `chrome` | Google Chrome | Google's dnf repo |
 | `vscode` | Visual Studio Code | Microsoft's dnf repo |
 | `flatpak` | Spotify, Discord, Mission Center, Extension Manager | Flathub |

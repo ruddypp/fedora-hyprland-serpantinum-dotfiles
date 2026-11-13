@@ -38,8 +38,8 @@ set +u
 nvm install 24.12.0
 nvm alias default 24.12.0
 nvm use 24.12.0
-npm install -g @openai/codex@0.159.3 @railway/cli@5.62.1 9router@0.5.75 \
-    firecrawl-cli@1.19.21 neonctl@2.20.1 opencode-ai@1.18.32 turbo@2.11.2 \
+npm install -g @openai/codex@0.159.3 9router@0.5.75 \
+    firecrawl-cli@1.19.21 neonctl@2.20.1 turbo@2.11.2 \
     better-sqlite3@13.0.3 harmonyos-sans@1.0.0 systray2@2.1.4
 
 if ! grep -q 'nvm.sh' "$HOME/.bashrc" 2>/dev/null; then

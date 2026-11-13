@@ -18,11 +18,11 @@
 set -euo pipefail
 
 # Edit these lists to change what gets installed.
-DNF_APPS=(firefox gnome-text-editor celluloid loupe kitty ptyxis dconf-editor
-    syncthing neovim bat fd-find tree git gh curl wget2-wget
+DNF_APPS=(firefox gnome-text-editor celluloid loupe ptyxis dconf-editor
+    syncthing bat fd-find tree git gh curl wget2-wget
     php php-mysqlnd phpMyAdmin composer mariadb-server postgresql-server
     postgresql-contrib python3-pip python3-devel python3.12
-    cmake clang bison flex openssl-devel podman toolbox
+    bison flex openssl-devel podman toolbox
     android-tools)
 FLATPAK_APPS=(com.spotify.Client com.discordapp.Discord io.missioncenter.MissionCenter
     com.mattjakeman.ExtensionManager)
