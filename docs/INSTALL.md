@@ -4,7 +4,7 @@
 
 - **Fedora 43** (Workstation or any spin), x86_64, a normal user with `sudo`
 - A Wayland-capable GPU. Intel/AMD work out of the box. NVIDIA works with the proprietary driver (tested with 580 on an MX330 hybrid laptop)
-- ~2 GB of downloads (packages, Rust toolchain for building satty, fonts, icons)
+- Several GB of downloads, including desktop packages, development tools, AppImages and the Rust toolchain
 - Internet access for COPR, GitHub and crates.io
 
 You do **not** need to remove GNOME. Hyprland shows up as an extra session on your login screen and GNOME stays as a fallback until you decide otherwise.
@@ -57,20 +57,25 @@ It also creates `~/Pictures/Wallpapers/workspaces` (per-workspace wallpapers) an
 
 | Group | Apps | Source |
 | --- | --- | --- |
-| `dnf` | Firefox, GNOME Text Editor | Fedora repos |
+| `dnf` | Firefox, Text Editor, Celluloid, Loupe, Kitty, Ptyxis, Syncthing, development tools and database packages | Fedora repos; full list in `scripts/install-apps.sh` |
 | `chrome` | Google Chrome | Google's dnf repo |
 | `vscode` | Visual Studio Code | Microsoft's dnf repo |
-| `flatpak` | Spotify, Discord, Mission Center | Flathub |
+| `flatpak` | Spotify, Discord, Mission Center, Extension Manager | Flathub |
 | `appimage` | Obsidian, Orca, WordCraft, GridCraft, PdfCraft, DeckCraft | Latest GitHub release into `~/.local/bin`, SHA-256 checked |
 | `claude` | Claude Code (CLI, run `claude` in Ghostty) | Anthropic's native installer into `~/.local/bin`, updates itself |
+| `extras` | Docker Engine, Tailscale, nvm, Node 24 and global development CLIs | Official Docker and Tailscale repositories, nvm and npm |
 
 Skip what you don't want, or run it on its own later:
 
 ```bash
 ./scripts/install-apps.sh --skip vscode,appimage
+# Skip Docker, Tailscale and the Node toolchain:
+./scripts/install-apps.sh --skip extras
 ```
 
 The AppImages are about 750 MB together (Orca alone is ~260 MB); skip `appimage` on a metered connection. AppImages don't update themselves; run the script again to pull newer releases. It also makes the Craft apps the default for Word, Excel, PowerPoint and PDF files. To change the list, edit the arrays at the top of the script and the `dock.apps` entries in `config/serpantinum/settings.json`.
+
+The application migration is **not complete**: see [APPLICATION-INVENTORY.md](APPLICATION-INVENTORY.md) for the locally observed applications, exclusions and outstanding installers. Installing MariaDB or PostgreSQL packages does not initialize databases, migrate data, or start services. Docker and Tailscale services are enabled by the extras installer; Tailscale requires sign-in. Docker commands require sudo unless access is configured separately. Open a new terminal to use nvm and the Node tools.
 
 ### Second brain (notes + graphify + Obsidian)
 

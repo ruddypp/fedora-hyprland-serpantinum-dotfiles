@@ -2,13 +2,13 @@
 # Install the apps pinned in the dock, so the desktop looks like the screenshots.
 #
 # Usage: ./scripts/install-apps.sh [--skip GROUP[,GROUP...]] [--help]
-#   Groups: dnf, chrome, vscode, flatpak, appimage, claude
+#   Groups: dnf, chrome, vscode, flatpak, appimage, claude, extras
 #   Example: ./scripts/install-apps.sh --skip vscode,appimage
 #
-#   dnf       Firefox, GNOME Text Editor
+#   dnf       Fedora desktop apps, development tools and database packages
 #   chrome    Google Chrome (Google's official dnf repo)
 #   vscode    Visual Studio Code (Microsoft's official dnf repo)
-#   flatpak   Spotify, Discord, Mission Center (Flathub)
+#   flatpak   Spotify, Discord, Mission Center, Extension Manager (Flathub)
 #   appimage  Obsidian, Orca, WordCraft, GridCraft, PdfCraft, DeckCraft
 #             (latest GitHub release, checked against the SHA-256 GitHub publishes)
 #   claude    Claude Code CLI (Anthropic's official native installer, into ~/.local/bin)
@@ -18,8 +18,14 @@
 set -euo pipefail
 
 # Edit these lists to change what gets installed.
-DNF_APPS=(firefox gnome-text-editor)
-FLATPAK_APPS=(com.spotify.Client com.discordapp.Discord io.missioncenter.MissionCenter)
+DNF_APPS=(firefox gnome-text-editor celluloid loupe kitty ptyxis dconf-editor
+    syncthing neovim bat fd-find tree git gh curl wget2-wget
+    php php-mysqlnd phpMyAdmin composer mariadb-server postgresql-server
+    postgresql-contrib python3-pip python3-devel python3.12
+    cmake clang bison flex openssl-devel podman toolbox
+    android-tools)
+FLATPAK_APPS=(com.spotify.Client com.discordapp.Discord io.missioncenter.MissionCenter
+    com.mattjakeman.ExtensionManager)
 # name | GitHub repo | asset regex | desktop id | extra env for Exec
 APPIMAGES=(
     "obsidian|obsidianmd/obsidian-releases|^Obsidian-[0-9.]+\\.AppImage$|obsidian|"
@@ -217,6 +223,10 @@ if want claude; then
         info "Claude Code (claude.ai/install.sh, verifies its own checksum)"
         curl -fsSL https://claude.ai/install.sh | bash
     fi
+fi
+
+if want extras; then
+    bash "$(dirname "$0")/install-extra-apps.sh"
 fi
 
 info "Apps done. AppImages have no auto-update: run this script again to update them."
