@@ -38,6 +38,7 @@ This repo does all of that with one script, and adds a few things on top.
 - **Ghostty** as the terminal, **WhiteSur-dark** icons, `adw-gtk3-dark` for GTK apps
 - **SDDM login** with [Pixie](https://github.com/xCaptaiN09/pixie-sddm) (Pixel-style lock screen, colors from your wallpaper) by default, or the custom **serpantinum-obsidian** theme; both use your wallpaper + avatar and run on Weston, so no KDE is needed
 - **Dock apps installed for you**: Chrome, VS Code, Firefox, Spotify, Discord, Obsidian, Orca, Text Editor and the WordCraft/GridCraft/PdfCraft/DeckCraft office suite, plus the **Claude Code** CLI (opt out with `--no-apps`)
+- **Empty second brain**: a notes folder with [graphify](https://github.com/safishamsi/graphify) knowledge graphs, an Obsidian vault that mirrors it, and Claude Code wired to read the notes first (`scripts/install-brain.sh`, opt out with `--no-brain`). Starts empty, nothing personal is shipped
 - Optional script to **remove GNOME/KDE** safely (dry run by default, checks every dependency first)
 - Telemetry in Serpantinum is **off**
 
@@ -76,6 +77,8 @@ config/quickshell/overview/     GNOME-style workspace overview (-> ~/.config/qui
 config/serpantinum/settings.json  Serpantinum settings template (-> ~/.config/serpantinum)
 config/ghostty/config           Ghostty "Carbon Glass" config
 scripts/install-apps.sh         dock apps (dnf, Flathub, verified AppImages)
+scripts/install-brain.sh        empty notes + graphify + Obsidian vault, Claude Code hooks
+brain/                          templates for it (index, sync script, Obsidian settings, CLAUDE.md rules)
 scripts/install-sddm.sh         SDDM + serpantinum-obsidian theme
 scripts/remove-gnome-kde.sh     optional, dry run by default
 scripts/lists/                  verified package lists for the removal script

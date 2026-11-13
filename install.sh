@@ -2,7 +2,7 @@
 # fedora-hyprland-serpantinum-dotfiles installer
 # Hyprland + Quickshell + Serpantinum on Fedora 43, without the Arch-only upstream installer.
 #
-# Usage: ./install.sh [--skip-packages] [--skip-icons] [--no-apps] [--with-sddm] [--help]
+# Usage: ./install.sh [--skip-packages] [--skip-icons] [--no-apps] [--no-brain] [--with-sddm] [--help]
 set -euo pipefail
 
 SERPANTINUM_REPO="https://github.com/ilyamiro/serpantinum.git"
@@ -17,6 +17,7 @@ SKIP_PACKAGES=false
 SKIP_ICONS=false
 WITH_SDDM=false
 WITH_APPS=true
+WITH_BRAIN=true
 
 info() { printf '\e[36m==>\e[0m %s\n' "$*"; }
 warn() { printf '\e[33m!!\e[0m %s\n' "$*"; }
@@ -30,6 +31,7 @@ Options:
   --skip-packages  Do not enable COPRs or install dnf packages
   --skip-icons     Do not install the WhiteSur icon theme
   --no-apps        Do not install the dock apps (Chrome, VS Code, Spotify, Discord, Obsidian, ...; see scripts/install-apps.sh)
+  --no-brain       Do not set up the empty notes + graphify + Obsidian "second brain" (see scripts/install-brain.sh)
   --with-sddm      Also install SDDM + the serpantinum-obsidian login theme (runs scripts/install-sddm.sh)
   --help           Show this help
 EOF
@@ -41,6 +43,7 @@ for arg in "$@"; do
         --skip-icons)    SKIP_ICONS=true ;;
         --with-sddm)     WITH_SDDM=true ;;
         --no-apps)       WITH_APPS=false ;;
+        --no-brain)      WITH_BRAIN=false ;;
         -h|--help)       usage; exit 0 ;;
         *) die "Unknown option: $arg (see --help)" ;;
     esac
@@ -185,7 +188,12 @@ if [ "$WITH_APPS" = true ] && [ "$SKIP_PACKAGES" = false ]; then
     bash "$DOTS/scripts/install-apps.sh"
 fi
 
-# ---------- 9. SDDM (optional) ----------
+# ---------- 9. second brain (empty notes + graphify + Obsidian) ----------
+if [ "$WITH_BRAIN" = true ]; then
+    bash "$DOTS/scripts/install-brain.sh"
+fi
+
+# ---------- 10. SDDM (optional) ----------
 if [ "$WITH_SDDM" = true ]; then
     bash "$DOTS/scripts/install-sddm.sh"
 fi

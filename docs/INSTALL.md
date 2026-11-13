@@ -28,6 +28,7 @@ Options:
 | --- | --- |
 | `--skip-packages` | Don't touch COPR/dnf (you installed the packages yourself) |
 | `--skip-icons` | Don't install WhiteSur icons |
+| `--no-brain` | Don't set up the notes/graphify/Obsidian brain (see below) |
 | `--no-apps` | Don't install the dock apps (see below) |
 | `--with-sddm` | Also run `scripts/install-sddm.sh` at the end |
 
@@ -70,6 +71,29 @@ Skip what you don't want, or run it on its own later:
 ```
 
 The AppImages are about 750 MB together (Orca alone is ~260 MB); skip `appimage` on a metered connection. AppImages don't update themselves; run the script again to pull newer releases. It also makes the Craft apps the default for Word, Excel, PowerPoint and PDF files. To change the list, edit the arrays at the top of the script and the `dock.apps` entries in `config/serpantinum/settings.json`.
+
+### Second brain (notes + graphify + Obsidian)
+
+`scripts/install-brain.sh` runs after the apps. It ships **no notes**, only the structure:
+
+| Piece | Where |
+| --- | --- |
+| graphify CLI (`graphifyy`, via uv) | `~/.local/bin/graphify` |
+| `/graphify` skill for Claude Code | `~/.claude/skills/graphify` |
+| Rules: read the notes index first, keep code graphs out of repos | appended to `~/.claude/CLAUDE.md` |
+| Hooks: remind Claude to query the graph before grepping/reading | `~/.claude/settings.json` (`PreToolUse`) |
+| Notes folder with `00-INDEX.md`, `graph-repo/`, `_tools/sync_obsidian.py` | `~/Documents/catatan` (`--notes DIR`) |
+| Obsidian vault (core plugins + graph view preset) | `~/Documents/catatan/<username>` (`--vault NAME`) |
+
+Existing `~/.claude` files are backed up first and existing notes are never overwritten. Day to day:
+
+```bash
+mkdir ~/Documents/catatan/work            # one folder per topic, write .md notes in it
+# in Claude Code:  /graphify ~/Documents/catatan/work
+python3 ~/Documents/catatan/_tools/sync_obsidian.py   # notes + graph nodes into Obsidian
+```
+
+Then in Obsidian: "Open folder as vault" and pick `~/Documents/catatan/<username>`.
 
 ## 3. Add wallpapers
 
