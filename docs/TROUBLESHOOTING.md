@@ -114,6 +114,23 @@ gnome-keyring isn't being unlocked at login. `scripts/install-sddm.sh` adds `pam
 grep gnome_keyring /etc/pam.d/sddm
 ```
 
+## Quickshell uses a lot of CPU / battery drains fast
+
+Anything in the bar that animates forever makes Quickshell redraw at 60 fps. Patch `0004` already stops the battery wave. The music visualizer (`vis`, runs cava) and the system monitor (`sysmon`) are left out of `bar.modules` in the settings template for the same reason; adding them back costs noticeable CPU and battery. Check with `top -p $(pgrep -d, quickshell)`.
+
+If the whole machine feels slow while plugged in, check the power profile. `power-saver` pins the CPU around 800 MHz even under load:
+
+```bash
+powerprofilesctl get
+powerprofilesctl set balanced
+```
+
+High `wa` (iowait) in `top` with almost no disk traffic comes from i915 waiting on vblank, not from the disk.
+
+## Wi-Fi never asks for the password again after a typo
+
+NetworkManager keeps the profile with the wrong password. Patch `0005` forgets it when the connection fails, so the next click prompts again. Without the patch: `nmcli connection delete "<SSID>"`.
+
 ## A patch does not apply after changing the Serpantinum commit
 
 Upstream changed the lines the patch touches. Apply the rest by hand, or update the patch:

@@ -1,0 +1,30 @@
+Subject: Stop the battery wave animation from redrawing the bar forever
+
+The battery widget runs an infinite 60 fps wave animation. On a laptop this
+keeps Quickshell's render thread busy all the time (measured ~55% CPU while
+charging, ~99% together with cava/sysmon). The side-bar copy is created even
+when the bar sits on top and animates unconditionally, so both are disabled.
+The battery level itself still updates normally.
+
+--- a/src/quickshell/bar/modules/system/BatWidget.qml	2026-11-13 14:59:16.234623201 +0700
++++ b/src/quickshell/bar/modules/system/BatWidget.qml	2026-11-13 14:59:16.236998471 +0700
+@@ -65,7 +65,7 @@
+         to: Math.PI * 2
+         duration: batWidgetRoot.isCharging ? 1800 : 3600
+         loops: Animation.Infinite
+-        running: batWidgetRoot.showLayout && batWidgetRoot.moduleActive
++        running: false
+     }
+ 
+     Timer {
+--- a/src/quickshell/bar/sidemodules/system/SideBatWidget.qml	2026-11-13 14:59:16.244513957 +0700
++++ b/src/quickshell/bar/sidemodules/system/SideBatWidget.qml	2026-11-13 14:59:16.246431327 +0700
+@@ -65,7 +65,7 @@
+         to: Math.PI * 2
+         duration: sideBatRoot.isCharging ? 1800 : 3600
+         loops: Animation.Infinite
+-        running: sideBatRoot.showLayout && sideBatRoot.moduleActive
++        running: false
+     }
+ 
+     Timer {

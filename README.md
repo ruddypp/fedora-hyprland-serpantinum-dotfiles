@@ -28,6 +28,8 @@ This repo does all of that with one script, and adds a few things on top.
   - `0001` Qt 6.10 fix (the blank-screen bug)
   - `0002` **per-workspace wallpapers**, macOS Spaces style, instant switch with no animation
   - `0003` translucent dock icon tiles
+  - `0004` battery wave animation off (it kept Quickshell at 50%+ CPU on laptops)
+  - `0005` Wi-Fi asks for the password again after a wrong one
 - **Obsidian** preset: black/white/gray, Adwaita Mono, 3 workspaces shown in the bar
 - **Predictable tiling**: new windows always open right/bottom, splits stay put, dialogs/PiP float, apps can't force-maximize
 - **Gap-free workspaces**: occupied workspaces are renumbered 1, 2, 3… automatically (no empty holes)
