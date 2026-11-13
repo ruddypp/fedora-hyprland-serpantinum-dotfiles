@@ -64,7 +64,7 @@ Saved to `~/Pictures/Screenshots`.
 
 | Keys | Action |
 | --- | --- |
-| `Print` | Select an area, save |
+| `Print` | Full screen, save (no overlay) |
 | `Shift+Print` | Select an area, open in satty to annotate |
 | `Super+Print` | Full screen |
 | `Super+Shift+Print` | Full screen, open in satty |

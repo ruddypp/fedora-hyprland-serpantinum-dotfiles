@@ -95,6 +95,12 @@ The icon tile color comes from patch `0003` (`Qt.alpha(ThemeBackend.surface0, 0.
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.25 })
 ```
 
+To mirror the laptop screen on an HDMI TV instead of extending it, uncomment the `HDMI-A-1` example in `monitors.lua`. Many TVs advertise 1360x768 as "preferred", so the example forces `1920x1080@60`. Try it live first:
+
+```bash
+hyprctl eval 'hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "auto", scale = 1.0, mirror = "eDP-1" })'
+```
+
 Careful with the Display tab in Serpantinum's guide. A scale of 2–3 on a 1080p screen makes the UI too big to use; see [TROUBLESHOOTING.md](TROUBLESHOOTING.md#the-ui-is-huge-after-changing-scale).
 
 ## Login screen
