@@ -17,8 +17,8 @@
   "bar": {
     "position": "top",
     "width": 100,
-    "opacity": 81,
-    "style": "modular",
+    "opacity": 100,
+    "style": "solid",
     "time": {
       "format": "HH:mm:ss"
     },
@@ -26,8 +26,8 @@
     "autohideTimeout": 1000,
     "modules": {
       "left": [
-        "left",
         "workspaces",
+        "left",
         "media"
       ],
       "center": [
@@ -39,8 +39,6 @@
       ],
       "right": [
         [
-          "tray",
-          "kb",
           "wifi",
           "bt",
           "vol",
@@ -48,43 +46,45 @@
         ]
       ]
     },
-    "distinctPills": false,
+    "distinctPills": true,
     "groupColors": {
       "g_timedate": "#d0d0d0",
-      "g_kb": "#e0e0e0"
+      "g_kb": "#e0e0e0",
+      "g_tray": "#ffffff",
+      "g_sysmon": "#bc8cff"
     },
-    "timeStyle": "classic",
-    "workspacesStyle": "numbers",
+    "timeStyle": "material",
+    "workspacesStyle": "pacman",
     "workspaceCount": 3
   },
   "theme": {
     "fontFamily": "Adwaita Mono",
-    "borderRadius": 10,
-    "activePreset": "Obsidian",
+    "borderRadius": 16,
+    "activePreset": "GitHub Dark",
     "matugen": false,
     "colors": {
-      "base": "#000000",
-      "blue": "#ffffff",
-      "crust": "#000000",
-      "green": "#ffffff",
-      "mantle": "#050505",
-      "maroon": "#808080",
-      "mauve": "#d0d0d0",
-      "overlay0": "#5a5a5a",
-      "overlay1": "#7a7a7a",
-      "overlay2": "#9a9a9a",
-      "peach": "#cccccc",
-      "pink": "#e0e0e0",
-      "red": "#a0a0a0",
-      "sapphire": "#e0e0e0",
-      "subtext0": "#a0a0a0",
-      "subtext1": "#c0c0c0",
-      "surface0": "#1a1a1a",
-      "surface1": "#2a2a2a",
-      "surface2": "#3a3a3a",
-      "teal": "#c0c0c0",
-      "text": "#ffffff",
-      "yellow": "#ffffff"
+      "base": "#0d1117",
+      "blue": "#58a6ff",
+      "crust": "#010409",
+      "green": "#3fb950",
+      "mantle": "#010409",
+      "maroon": "#f85149",
+      "mauve": "#bc8cff",
+      "overlay0": "#484f58",
+      "overlay1": "#6e7681",
+      "overlay2": "#8b949e",
+      "peach": "#f0883e",
+      "pink": "#d2a8ff",
+      "red": "#f85149",
+      "sapphire": "#388bfd",
+      "subtext0": "#8b949e",
+      "subtext1": "#b1bac4",
+      "surface0": "#161b22",
+      "surface1": "#21262d",
+      "surface2": "#30363d",
+      "teal": "#39c5cf",
+      "text": "#c9d1d9",
+      "yellow": "#d29922"
     }
   },
   "idle": {
@@ -133,10 +133,12 @@
     }
   },
   "notifications": {
+    "verticalPosition": 8,
+    "horizontalPosition": 50,
     "dnd": false,
-    "position": "top right",
+    "position": "top center",
     "sound": true,
-    "soundFile": "__HOME__/.local/share/serpantinum/src/assets/sounds/notifications/Botanica.wav"
+    "soundFile": "__HOME__/.local/share/serpantinum/src/assets/sounds/notifications/Sine.wav"
   },
   "display": {
     "monitors": {
@@ -158,7 +160,7 @@
     "floating": false,
     "opacity": 0,
     "exclusive": true,
-    "autohide": false,
+    "autohide": true,
     "smartAutohide": false,
     "autohideTimeout": 1000,
     "editing": false,

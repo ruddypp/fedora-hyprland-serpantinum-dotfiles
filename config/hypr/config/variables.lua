@@ -3,4 +3,4 @@
 mainMod = "SUPER"
 terminal = "ghostty"
 -- Super+F. Examples: "firefox", "google-chrome-stable", "brave-browser"
-browser = "firefox"
+browser = "google-chrome-stable"

@@ -8,7 +8,7 @@
 | --- | --- |
 | `Super+Enter` | Terminal (Ghostty, set in `variables.lua`) |
 | `Super+D` | App launcher |
-| `Super+F` | Browser (`browser` in `variables.lua`, Firefox by default) |
+| `Super+F` | Browser (`browser` in `variables.lua`, Google Chrome by default) |
 | `Super+E` | File manager (Nautilus) |
 
 ## Windows

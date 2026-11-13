@@ -1,6 +1,6 @@
 # fedora-hyprland-serpantinum-dotfiles
 
-Hyprland + Quickshell + [Serpantinum](https://github.com/ilyamiro/serpantinum) on **Fedora 43**, with a monochrome "Obsidian" look, per-workspace wallpapers, a matching SDDM login screen, and fixes for everything that breaks when you run Serpantinum outside Arch.
+Hyprland + Quickshell + [Serpantinum](https://github.com/ilyamiro/serpantinum) on **Fedora 43**, with a GitHub Dark look, per-workspace wallpapers, a matching SDDM login screen, and fixes for everything that breaks when you run Serpantinum outside Arch.
 
 ![Desktop](docs/screenshots/desktop.jpg)
 
@@ -30,7 +30,7 @@ This repo does all of that with one script, and adds a few things on top.
   - `0003` translucent dock icon tiles
   - `0004` battery wave animation off (it kept Quickshell at 50%+ CPU on laptops)
   - `0005` Wi-Fi asks for the password again after a wrong one
-- **Obsidian** preset: black/white/gray, Adwaita Mono, 3 workspaces shown in the bar
+- **GitHub Dark** preset with a solid bar, Pac-Man workspace dots, Material clock, centered notifications and an autohiding dock. The monochrome **Obsidian** preset is one click away in `Super+H` → Theme
 - **Predictable tiling**: new windows always open right/bottom, splits stay put, dialogs/PiP float, apps can't force-maximize
 - **Gap-free workspaces**: occupied workspaces are renumbered 1, 2, 3… automatically (no empty holes)
 - **GNOME-style overview** (`Super+Tab`): live previews of every workspace, drag a window onto another workspace to move it

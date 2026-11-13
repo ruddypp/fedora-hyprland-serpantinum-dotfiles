@@ -58,7 +58,7 @@ Apps with their own transparency stack with Hyprland's. That's why the Ghostty c
 
 ```lua
 terminal = "ghostty"
-browser = "firefox"   -- "google-chrome-stable", "brave-browser", ...
+browser = "google-chrome-stable"   -- "firefox", "brave-browser", ... (set "firefox" if you skipped Chrome in install-apps.sh)
 ```
 
 Terminal apps started from the launcher/dock use `launcher.terminalCommand` in `settings.json` (`"ghostty -e"`).
@@ -75,7 +75,7 @@ Log out/in after changing it. GTK apps use `gsettings set org.gnome.desktop.inte
 
 ## Colors and theme
 
-Serpantinum → `Super+H` → Theme. This config ships the **Obsidian** preset (pure black/white/gray) with **matugen off**, so the UI does not recolor itself from the wallpaper. That keeps per-workspace wallpaper switching cheap. Turning matugen on works, but then every workspace switch recolors the whole UI.
+Serpantinum → `Super+H` → Theme. This config ships the **GitHub Dark** preset with **matugen off**; the monochrome **Obsidian** preset (pure black/white/gray) is in the same list, so the UI does not recolor itself from the wallpaper. That keeps per-workspace wallpaper switching cheap. Turning matugen on works, but then every workspace switch recolors the whole UI.
 
 ## Dock
 
